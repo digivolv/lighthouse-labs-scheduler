@@ -1,18 +1,26 @@
-export default function getAppointmentsForDay(state, day) {
-  // state.days.id = states.appointments.[index].id
-
-  const foundDay = state.days.filter((dayItem) => dayItem.name === day);
-
-  //if array is not empty
-  if (foundDay.length) {
-    //filter returns an array so we access index 0
-    const foundDayAppts = foundDay[0].appointments;
-
-    const appointments = foundDayAppts.map((appointmentId) => {
-      return state.appointments[appointmentId];
-    });
-
-    return appointments;
+export function getInterview(state, interview) {
+  const result = {};
+  if (interview === null) {
+    return null;
   }
-  return [];
+  if (interview.interviewer) {
+    result.interviewer = state.interviewers[interview.interviewer];
+    result.student = interview.student;
+    // console.log(interview.interviewer);
+    // console.log("result", result);
+    return result;
+  }
+}
+
+export default function getAppointmentsForDay(state, day) {
+  //... returns an array of appointments for that day
+  const foundDay = state.days.find((d) => d.name === day);
+  if (!foundDay) {
+    return [];
+  }
+
+  const result = foundDay.appointments.map(
+    (appointmentID) => state.appointments[appointmentID]
+  );
+  return result;
 }

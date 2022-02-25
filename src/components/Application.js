@@ -4,6 +4,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment/";
 import "components/Application.scss";
 import getAppointmentsForDay from "helpers/selectors.js";
+import getInterview from "helpers/selectors.js";
 
 // const appointments = [
 //   {
@@ -76,14 +77,15 @@ export default function Application(props) {
       axios.get(appointmentsURL),
       axios.get(interviewersURL),
     ]).then((all) => {
-      // console.log(all[0]);
-      // console.log(all[1]);
-      // console.log(all[2]);
+      console.log(all[0].data);
+      console.log(all[1].data);
+      console.log(all[2].data);
       //NO longer need setDays because the days is being set here using setState
       setState((prev) => ({
         ...prev,
         days: all[0].data,
         appointments: all[1].data,
+        interviewers: all[2].data,
       }));
 
       const [first, second, third] = all;
@@ -94,6 +96,8 @@ export default function Application(props) {
   const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentsParse = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
         key={appointment.id}
