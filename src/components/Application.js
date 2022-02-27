@@ -3,8 +3,8 @@ import axios from "axios";
 import DayList from "./DayList";
 import Appointment from "./Appointment/";
 import "components/Application.scss";
-import getAppointmentsForDay from "helpers/selectors.js";
-import getInterview from "helpers/selectors.js";
+// import getAppointmentsForDay from "helpers/selectors.js";
+import { getInterview, getAppointmentsForDay } from "helpers/selectors.js";
 
 // const appointments = [
 //   {

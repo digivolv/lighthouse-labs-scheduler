@@ -1,4 +1,4 @@
-export function getInterview(state, interview) {
+function getInterview(state, interview) {
   const result = {};
   if (interview === null) {
     return null;
@@ -12,7 +12,7 @@ export function getInterview(state, interview) {
   }
 }
 
-export default function getAppointmentsForDay(state, day) {
+function getAppointmentsForDay(state, day) {
   //... returns an array of appointments for that day
   const foundDay = state.days.find((d) => d.name === day);
   if (!foundDay) {
@@ -24,3 +24,18 @@ export default function getAppointmentsForDay(state, day) {
   );
   return result;
 }
+
+function getInterviewersForDay(state, day) {
+  //... returns an array of appointments for that day
+  const foundDay = state.days.find((d) => d.name === day);
+  if (!foundDay) {
+    return [];
+  }
+
+  const result = foundDay.interviewers.map(
+    (interviewerID) => state.interviewers[interviewerID]
+  );
+  return result;
+}
+
+export { getInterview, getAppointmentsForDay, getInterviewersForDay };
