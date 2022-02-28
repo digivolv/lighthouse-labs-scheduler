@@ -5,11 +5,11 @@ function getInterview(state, interview) {
   }
   if (interview.interviewer) {
     result.interviewer = state.interviewers[interview.interviewer];
-    result.student = interview.student;
     // console.log(interview.interviewer);
     // console.log("result", result);
-    return result;
   }
+  result.student = interview.student;
+  return result;
 }
 
 function getAppointmentsForDay(state, day) {

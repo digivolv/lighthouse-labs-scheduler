@@ -70,7 +70,15 @@ export default function Application(props) {
       ...state,
       appointments,
     });
-    console.log(id, interview);
+
+    return axios
+      .put(`/api/appointments/${id}`, appointment)
+      .then((data) => {
+        console.log("data", data);
+      })
+      .catch((error) => {});
+
+    // console.log("id, interview", id, interview);
   }
   // const setDay = (day) => setState({ ...state, day });
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
@@ -97,9 +105,9 @@ export default function Application(props) {
       axios.get(appointmentsURL),
       axios.get(interviewersURL),
     ]).then((all) => {
-      console.log(all[0].data);
-      console.log(all[1].data);
-      console.log(all[2].data);
+      // console.log(all[0].data);
+      // console.log(all[1].data);
+      // console.log(all[2].data);
       //NO longer need setDays because the days is being set here using setState
       setState((prev) => ({
         ...prev,
@@ -119,7 +127,9 @@ export default function Application(props) {
     const interview = getInterview(state, appointment.interview);
 
     const interviewers = getInterviewersForDay(state, state.day);
+    console.log("interviewers", interviewers);
 
+    console.log("interview", interview);
     return (
       <Appointment
         key={appointment.id}
