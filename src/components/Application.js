@@ -4,7 +4,11 @@ import DayList from "./DayList";
 import Appointment from "./Appointment/";
 import "components/Application.scss";
 // import getAppointmentsForDay from "helpers/selectors.js";
-import { getInterview, getAppointmentsForDay } from "helpers/selectors.js";
+import {
+  getInterview,
+  getInterviewersForDay,
+  getAppointmentsForDay,
+} from "helpers/selectors.js";
 
 // const appointments = [
 //   {
@@ -52,6 +56,22 @@ export default function Application(props) {
     appointments: {},
   });
 
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    setState({
+      ...state,
+      appointments,
+    });
+    console.log(id, interview);
+  }
   // const setDay = (day) => setState({ ...state, day });
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
 
@@ -98,11 +118,16 @@ export default function Application(props) {
   const appointmentsParse = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
+    const interviewers = getInterviewersForDay(state, state.day);
+
     return (
       <Appointment
         key={appointment.id}
-        {...appointment}
-
+        // {...appointment} do not spread because we need to use new interview variable using getInterview
+        id={appointment.id}
+        interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
         // time={appointment.time}
         // interviewer={appointment.interviewer}
       />
