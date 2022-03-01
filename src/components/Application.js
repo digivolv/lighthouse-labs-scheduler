@@ -71,12 +71,11 @@ export default function Application(props) {
       appointments,
     });
 
-    return axios
-      .put(`/api/appointments/${id}`, appointment)
-      .then((data) => {
-        // console.log("data", data);
-      })
-      .catch((error) => {});
+    return axios.put(`/api/appointments/${id}`, appointment);
+    // .then((data) => {
+    //   // console.log("data", data);
+    // })
+    // .catch((error) => {});
 
     // console.log("id, interview", id, interview);
   }
