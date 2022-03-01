@@ -74,11 +74,29 @@ export default function Application(props) {
     return axios
       .put(`/api/appointments/${id}`, appointment)
       .then((data) => {
-        console.log("data", data);
+        // console.log("data", data);
       })
       .catch((error) => {});
 
     // console.log("id, interview", id, interview);
+  }
+
+  function cancelInterview(id) {
+    // console.log("cancelInterview INVOKED");
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    setState({
+      ...state,
+      appointments,
+    });
+
+    return axios.delete(`/api/appointments/${id}`);
   }
   // const setDay = (day) => setState({ ...state, day });
   const setDay = (day) => setState((prev) => ({ ...prev, day }));
@@ -138,8 +156,10 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
         // time={appointment.time}
         // interviewer={appointment.interviewer}
+        // appointments={state.appointments}
       />
     );
   });
