@@ -6,6 +6,14 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
+  const validate = () => {
+    if (!student || student === "") {
+      alert("Student name cannot be blank");
+      return;
+    }
+    props.onSave(student, interviewer);
+  };
+
   const reset = () => {
     setStudent("");
     setInterviewer("");
@@ -40,7 +48,7 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={() => props.onSave(student, interviewer)}>
+          <Button confirm onClick={validate}>
             Save
           </Button>
         </section>
