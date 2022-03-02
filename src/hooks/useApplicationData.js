@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import { getAppointmentsForDay } from "../helpers/selectors.js";
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -83,6 +82,7 @@ export default function Application(props) {
       axios.get(appointmentsURL),
       axios.get(interviewersURL),
     ]).then((all) => {
+      //Purposely keeping all console.logs to have reference to understand how data is outputted
       // console.log(all[0].data);
       // console.log(all[1].data);
       // console.log(all[2].data);
@@ -95,8 +95,6 @@ export default function Application(props) {
       }));
 
       const [first, second, third] = all;
-
-      // console.log("FREAK", first, second, third);
     });
   }, []);
 

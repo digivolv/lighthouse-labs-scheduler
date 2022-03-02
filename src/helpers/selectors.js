@@ -1,3 +1,4 @@
+//gets student name and interviewer id pair for a specific appointment
 function getInterview(state, interview) {
   const result = {};
   if (interview === null) {
@@ -5,13 +6,12 @@ function getInterview(state, interview) {
   }
   if (interview.interviewer) {
     result.interviewer = state.interviewers[interview.interviewer];
-    // console.log(interview.interviewer);
-    // console.log("result", result);
   }
   result.student = interview.student;
   return result;
 }
 
+//gets the appointments for a specific day
 function getAppointmentsForDay(state, day) {
   //... returns an array of appointments for that day
   const foundDay = state.days.find((d) => d.name === day);
@@ -25,6 +25,7 @@ function getAppointmentsForDay(state, day) {
   return result;
 }
 
+//get the interviewers for a specific day
 function getInterviewersForDay(state, day) {
   //... returns an array of appointments for that day
   const foundDay = state.days.find((d) => d.name === day);

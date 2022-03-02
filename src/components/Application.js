@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import DayList from "./DayList";
 import Appointment from "./Appointment/";
 import "components/Application.scss";
-// import getAppointmentsForDay from "helpers/selectors.js";
 import {
   getInterview,
   getInterviewersForDay,
@@ -20,14 +18,11 @@ export default function Application(props) {
 
   const appointmentsParse = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
     const interviewers = getInterviewersForDay(state, state.day);
-    // console.log("interviewers", interviewers);
 
-    // console.log("interview", interview);
     return (
       <Appointment
-        key={appointment.id}
+        // key={appointment.id}
         // {...appointment} do not spread because we need to use new interview variable using getInterview
         id={appointment.id}
         interview={interview}
@@ -37,10 +32,6 @@ export default function Application(props) {
       />
     );
   });
-
-  // console.log("dailyAppointments", dailyAppointments);
-  // console.log("state.days", state.days);
-  // console.log("state.appointments", state.appointments);
 
   return (
     <main className="layout">

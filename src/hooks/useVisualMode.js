@@ -11,15 +11,14 @@ export default function useVisualMode(initialMode) {
     } else {
       setMode(newMode);
       //spread injects the values into arrray
-      //no spread will inject array into array
+      //no spread will inject an array into array (do not use {[...prev.slice]})
       setHistory((prev) => [...prev.slice(0, prev.length - 1), newMode]);
-      // setHistory([newMode]);
     }
   };
 
   const back = () => {
     if (history.length > 1) {
-      //asynch so have to store in variable
+      //asynchronous so have to store in variable
       const prevHistory = history.slice(0, -1);
       setHistory(prevHistory);
       setMode(prevHistory[prevHistory.length - 1]);

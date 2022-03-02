@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./InterviewerListItem.scss";
 import classNames from "classnames";
-import PropTypes from 'prop-types'
-
-
 
 export default function InterviewerListItem(props) {
   
@@ -22,7 +19,6 @@ export default function InterviewerListItem(props) {
         src={props.avatar}
         alt={props.name}
       />
-      {/* {props.selected ? props.name : null}  */}
       {props.selected && props.name}
     </li>
   );

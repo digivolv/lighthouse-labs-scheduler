@@ -12,10 +12,11 @@ export default function Form(props) {
       setError("Student name cannot be blank");
       return;
     }
-    if (!interviewer || interviewer === "") {
-      setError("Interviewer name cannot be blank");
-      return;
-    }
+    // Adding a validator for interviewer was not required in the exercise and also breaks one test so I am commenting it out
+    // else if (!interviewer || interviewer === "") {
+    //   setError("Interviewer name cannot be blank");
+    //   return;
+    // }
     setError("");
     props.onSave(student, interviewer);
   };
@@ -64,9 +65,3 @@ export default function Form(props) {
     </main>
   );
 }
-
-// studentName
-
-// interviewersID
-
-// input value element
