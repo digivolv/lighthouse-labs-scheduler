@@ -1,19 +1,31 @@
 describe("Appointments", () => {
-  it("should book an interview", () => {
+  beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
-    cy.visit("/")
-      .contains("Monday")
-      .get("[alt=Add]")
-      .first()
-      .click()
-      .get("[data-testid=student-name-input]")
-      .type("Lydia Miller-Jones", { delay: 50 })
-      .get("[alt='Sylvia Palmer']")
-      .click();
+    cy.visit("/");
+    cy.contains("Monday");
+  });
+  // it("should book an interview", () => {
+  //   cy.get("[alt=Add]").first().click();
+
+  //   cy.get("[data-testid=student-name-input]").type("Lydia Miller-Jones");
+  //   cy.get('[alt="Sylvia Palmer"]').click();
+
+  //   cy.contains("Save").click();
+
+  //   cy.contains(".appointment__card--show", "Lydia Miller-Jones");
+  //   cy.contains(".appointment__card--show", "Sylvia Palmer");
+  // });
+  it("should edit an interview", () => {
+    cy.get("[alt=Edit]").first().click({ force: true });
+
+    cy.get("[data-testid=student-name-input]")
+      .clear()
+      .type("Lydia Miller-Jones");
+    cy.get("[alt='Tori Malcolm']").click();
 
     cy.contains("Save").click();
-    // .contains("img", "Add")
-    // .click()
-    // .should("have.class", "day-list__item--selected");
+
+    cy.contains(".appointment__card--show", "Lydia Miller-Jones");
+    cy.contains(".appointment__card--show", "Tori Malcolm");
   });
 });
