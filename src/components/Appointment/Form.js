@@ -5,12 +5,21 @@ import Button from "../Button";
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const validate = () => {
+    console.log("studentGARY", student);
     if (!student || student === "") {
-      alert("Student name cannot be blank");
+      // alert("Student name cannot be blank");
+      setError("Student name cannot be blank");
       return;
     }
+    // else if (!interviewer || interviewer === "") {
+    //   // alert("Student name cannot be blank");
+    //   setError("Interviewer name cannot be blank");
+    //   return;
+    // }
+    setError("");
     props.onSave(student, interviewer);
   };
 
@@ -28,8 +37,10 @@ export default function Form(props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
+          <section className="appointment__validation">{error}</section>
           <input
             className="appointment__create-input text--semi-bold"
+            data-testid="student-name-input"
             name="name"
             type="text"
             placeholder="Enter Student Name"
