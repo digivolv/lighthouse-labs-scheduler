@@ -10,15 +10,10 @@ export default function Form(props) {
   const validate = () => {
     console.log("studentGARY", student);
     if (!student || student === "") {
-      // alert("Student name cannot be blank");
       setError("Student name cannot be blank");
       return;
     }
-    // else if (!interviewer || interviewer === "") {
-    //   // alert("Student name cannot be blank");
-    //   setError("Interviewer name cannot be blank");
-    //   return;
-    // }
+
     setError("");
     props.onSave(student, interviewer);
   };
