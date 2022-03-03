@@ -22,7 +22,7 @@ export default function Application(props) {
 
     return (
       <Appointment
-        // key={appointment.id}
+        key={appointment.id}
         // {...appointment} do not spread because we need to use new interview variable using getInterview
         id={appointment.id}
         interview={interview}
