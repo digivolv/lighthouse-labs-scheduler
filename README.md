@@ -2,6 +2,10 @@
 
 Interview Scheduler is a single page application(SPA) that allows a student to a book and manage interviews with a mentor and is built using React. Data is persisted by the API server using a PostgreSQL database. The client application communicates with an API server over HTTP, using the JSON format.
 
+## Demo
+
+![final-product-gif](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 ## Behaviour
 
 The App allows users to add, edit and delete appointments in real time. It uses React built-in and custom hooks, and data is persisted by the API server through a PostgreSQL database.
