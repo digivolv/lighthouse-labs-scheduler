@@ -4,7 +4,7 @@ Interview Scheduler is a single page application(SPA) that allows a student to a
 
 ## Demo
 
-![final-product-gif](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![final-product-gif](https://github.com/digivolv/lighthouse-labs-scheduler/blob/master/public/images/demo.gif?raw=true)
 
 ## Behaviour
 
